@@ -111,12 +111,12 @@
                     </div>
                     <div class="p-6 space-y-4 text-sm text-slate-600 leading-relaxed">
                         <p>
-                            Traditional toxicology assumes biological response ($y$) scales linearly with dose ($d$): 
+                            Traditional toxicology assumes biological response (y) scales linearly with dose (d): 
                             <code class="bg-slate-100 px-2 py-1 rounded text-slate-800">y = f(d) + &epsilon;</code>.
                         </p>
                         <p>
                             In contrast, Deep Homeostatic Modeling posits that healthy biological states lie on a 
-                            <strong>low-dimensional, non-linear manifold ($\mathcal{M}$)</strong> embedded within high-dimensional space.
+                            <strong>low-dimensional, non-linear manifold (\mathcal{M})</strong> embedded within high-dimensional space.
                         </p>
                         <div class="bg-teal-50 p-4 rounded-lg border border-teal-100">
                             <p class="font-medium text-teal-900 mb-2">Key Concept:</p>
@@ -133,7 +133,7 @@
                     </div>
                     <div class="p-6 space-y-4 text-sm text-slate-600 leading-relaxed">
                         <p>
-                            We use a <strong>Nested Autoencoder</strong> to learn the manifold. The model compresses biological data ($x$) into a latent state ($z$) and attempts to reconstruct it ($\hat{x}$).
+                            We use a <strong>Nested Autoencoder</strong> to learn the manifold. The model compresses biological data (x) into a latent state ($z$) and attempts to reconstruct it (\hat{x}).
                         </p>
                         <p>
                             The toxicity metric is the <strong>Reconstruction Error</strong>:
@@ -615,4 +615,5 @@
     
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. Chart.js used for visualization. -->
 </body>
+
 </html>
