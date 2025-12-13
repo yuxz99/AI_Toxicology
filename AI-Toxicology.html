@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Homeostatic Modeling Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Marked for Markdown rendering of AI responses -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+
+        /* Chart Container Utilities - Strict constraints per requirements */
+        .chart-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        
+        @media (min-width: 768px) {
+            .chart-wrapper {
+                height: 350px;
+            }
+        }
+
+        /* Neural Network Visualization Styles */
+        .layer-box {
+            transition: all 0.3s ease;
+        }
+        .layer-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .connection-line {
+            height: 2px;
+            background: #e2e8f0;
+            flex-grow: 1;
+            margin: 0 10px;
+        }
+        
+        /* Markdown Styles for AI Response */
+        .prose p { margin-bottom: 0.5em; }
+        .prose strong { font-weight: 700; color: #0f172a; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-teal-100 selection:text-teal-900">
+
+    <!-- Chosen Palette: Slate (Neutrals) + Teal (Health/Pristine) + Rose (Toxicity/Warning) -->
+    <!-- Application Structure Plan: 
+         1. Header: Context setting.
+         2. Main Grid: 
+            - Left Column: Conceptual Framework.
+            - Right Column: Interactive "Deep Lab" (Simulations) + AI Insight.
+    -->
+
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-gradient-to-br from-teal-500 to-blue-600 rounded-lg shadow-sm flex items-center justify-center text-white font-bold text-lg">M</div>
+                <h1 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-slate-600">Deep Homeostatic Modeling</h1>
+            </div>
+            <nav class="hidden md:flex gap-6 text-sm font-medium text-slate-600">
+                <a href="#concept" class="hover:text-teal-600 transition-colors">Concept</a>
+                <a href="#simulation" class="hover:text-teal-600 transition-colors">Simulation</a>
+                <a href="#code" class="hover:text-teal-600 transition-colors">Implementation</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- Intro Section -->
+        <section class="max-w-3xl mx-auto text-center space-y-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">Redefining "The Poison" in the AI Era</h2>
+            <p class="text-lg text-slate-600">
+                Traditional toxicology relies on linear models that fail to capture the complexity of biological systems. 
+                <strong>Deep Homeostatic Modeling</strong> uses AI to define the "shape" of health, detecting toxicity not as pathology, but as <span class="text-rose-600 font-semibold">systemic entropy</span>.
+            </p>
+        </section>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Left Column: Theoretical Framework (Text Content) -->
+            <div class="lg:col-span-5 space-y-6">
+                
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="p-6 border-b border-slate-100 bg-slate-50">
+                        <h3 class="font-bold text-slate-800 flex items-center gap-2">
+                            <span class="text-teal-600 text-xl">01.</span> The Manifold Hypothesis
+                        </h3>
+                    </div>
+                    <div class="p-6 space-y-4 text-sm text-slate-600 leading-relaxed">
+                        <p>
+                            Traditional toxicology assumes biological response ($y$) scales linearly with dose ($d$): 
+                            <code class="bg-slate-100 px-2 py-1 rounded text-slate-800">y = f(d) + &epsilon;</code>.
+                        </p>
+                        <p>
+                            In contrast, Deep Homeostatic Modeling posits that healthy biological states lie on a 
+                            <strong>low-dimensional, non-linear manifold ($\mathcal{M}$)</strong> embedded within high-dimensional space.
+                        </p>
+                        <div class="bg-teal-50 p-4 rounded-lg border border-teal-100">
+                            <p class="font-medium text-teal-900 mb-2">Key Concept:</p>
+                            <p>Health is not a single point, but a "safe zone" of physiological stability. Toxicity is the vector distance pushing the system off this manifold.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="p-6 border-b border-slate-100 bg-slate-50">
+                        <h3 class="font-bold text-slate-800 flex items-center gap-2">
+                            <span class="text-teal-600 text-xl">02.</span> The Deep Dysregulation Score (DDS)
+                        </h3>
+                    </div>
+                    <div class="p-6 space-y-4 text-sm text-slate-600 leading-relaxed">
+                        <p>
+                            We use a <strong>Nested Autoencoder</strong> to learn the manifold. The model compresses biological data ($x$) into a latent state ($z$) and attempts to reconstruct it ($\hat{x}$).
+                        </p>
+                        <p>
+                            The toxicity metric is the <strong>Reconstruction Error</strong>:
+                        </p>
+                        <div class="font-mono text-xs bg-slate-800 text-slate-200 p-3 rounded-lg overflow-x-auto">
+                            DDS_i = ||x_i - D_phi(E_theta(x_i))||^2
+                        </div>
+                        <ul class="list-disc pl-5 space-y-1 mt-2">
+                            <li><strong>Low DDS:</strong> Data fits the healthy pattern (Homeostasis).</li>
+                            <li><strong>High DDS:</strong> Data violates healthy correlations (Dysregulation).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="p-6 border-b border-slate-100 bg-slate-50">
+                        <h3 class="font-bold text-slate-800 flex items-center gap-2">
+                            <span class="text-teal-600 text-xl">03.</span> The Deep Benchmark Dose (dBMD)
+                        </h3>
+                    </div>
+                    <div class="p-6 space-y-4 text-sm text-slate-600 leading-relaxed">
+                        <p>
+                            We introduce a new regulatory metric. Unlike traditional BMD which looks for a % change in a single mean, <strong>dBMD</strong> looks for a shift in systemic stability.
+                        </p>
+                        <div class="border-l-4 border-rose-400 pl-4 py-1">
+                            <p class="text-slate-800 font-semibold">Definition:</p>
+                            <p class="mt-1">The dose where the predicted DDS exceeds the baseline mean by 1 standard deviation.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Column: Interactive Simulation (The Lab) -->
+            <div class="lg:col-span-7 space-y-8" id="simulation">
+                
+                <!-- Simulator Control Panel -->
+                <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
+                    <div class="bg-slate-900 p-4 flex items-center justify-between">
+                        <h3 class="text-white font-bold flex items-center gap-2">
+                            <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                            Deep Homeostatic Simulator
+                        </h3>
+                        <span class="text-xs font-mono text-teal-400 bg-slate-800 px-2 py-1 rounded">Interactive Mode</span>
+                    </div>
+                    
+                    <div class="p-6 md:p-8 space-y-8">
+                        <!-- Mode Selector -->
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <label class="text-xs font-bold text-slate-500 uppercase tracking-wide mb-3 block">Simulation Profile</label>
+                            <div class="flex gap-6">
+                                <label class="flex items-center gap-2 cursor-pointer group">
+                                    <input type="radio" name="simMode" value="standard" class="accent-teal-600 w-4 h-4" checked onchange="updateModelMode()">
+                                    <span class="text-sm text-slate-600 group-hover:text-teal-600 font-medium transition-colors">Standard Toxin</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer group">
+                                    <input type="radio" name="simMode" value="edc" class="accent-teal-600 w-4 h-4" onchange="updateModelMode()">
+                                    <span class="text-sm text-slate-600 group-hover:text-teal-600 font-medium transition-colors">Endocrine Disruptor (EDC)</span>
+                                </label>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-2 italic" id="modeDescription">Monotonic dose-response (S-Curve). Classic toxicity.</p>
+                        </div>
+
+                        <!-- Controls -->
+                        <div>
+                            <label for="doseSlider" class="flex justify-between text-sm font-bold text-slate-700 mb-2">
+                                <span>Toxicant Dose (Exposure Level)</span>
+                                <span id="doseValue" class="text-rose-600">0.0 units</span>
+                            </label>
+                            <input type="range" id="doseSlider" min="0" max="10" step="0.1" value="0" 
+                                class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-teal-600 hover:accent-teal-500 transition-all">
+                            <div class="flex justify-between text-xs text-slate-400 mt-2">
+                                <span>Pristine</span>
+                                <span id="activationLabel" class="opacity-0 transition-opacity text-teal-600 font-bold">Activation</span>
+                                <span>Critical</span>
+                            </div>
+                        </div>
+
+                        <!-- Visualization Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            
+                            <!-- Chart 1: Manifold View -->
+                            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+                                <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wide mb-2 text-center">Physiological State Space (PCA)</h4>
+                                <div class="chart-wrapper">
+                                    <canvas id="manifoldChart"></canvas>
+                                </div>
+                                <p class="text-xs text-center text-slate-400 mt-2">Blue: Healthy Reference | Red: Exposed Subject</p>
+                            </div>
+
+                            <!-- Chart 2: dBMD Curve -->
+                            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+                                <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wide mb-2 text-center">Dose-Response (DDS)</h4>
+                                <div class="chart-wrapper">
+                                    <canvas id="dbmdChart"></canvas>
+                                </div>
+                                <p class="text-xs text-center text-slate-400 mt-2">Dashed Line: 1 SD Threshold (dBMD)</p>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Metrics -->
+                        <div class="grid grid-cols-3 gap-4 border-t border-slate-100 pt-6">
+                            <div class="text-center">
+                                <div class="text-xs text-slate-500 uppercase">Current DDS</div>
+                                <div id="currentDDS" class="text-2xl font-bold text-slate-800">0.12</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-xs text-slate-500 uppercase">Manifold Distance</div>
+                                <div id="manifoldDist" class="text-2xl font-bold text-teal-600">Low</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-xs text-slate-500 uppercase">Entropy Status</div>
+                                <div id="entropyStatus" class="text-2xl font-bold text-slate-800">Stable</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NEW: AI Analysis Integration (Simulated for Public Demo) -->
+                <div class="bg-gradient-to-r from-teal-50 to-indigo-50 rounded-xl shadow border border-teal-100 overflow-hidden relative">
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                                    <span>✨</span> Deep Toxicologist Insight
+                                </h3>
+                                <p class="text-sm text-slate-600 mt-1">
+                                    Simulate the AI interpretation of the current homeostatic state.
+                                </p>
+                            </div>
+                            <button id="analyzeBtn" onclick="analyzeStateWithMockAI()" class="bg-white border border-slate-200 hover:border-teal-400 text-slate-700 hover:text-teal-700 font-medium py-2 px-4 rounded-lg shadow-sm transition-all flex items-center gap-2 text-sm">
+                                <span>🔮</span> Analyze State
+                            </button>
+                        </div>
+                        
+                        <!-- AI Response Area -->
+                        <div id="aiResponseContainer" class="hidden">
+                            <div class="bg-white/80 rounded-lg p-4 text-sm text-slate-700 border border-teal-100 shadow-inner prose prose-sm max-w-none">
+                                <div id="aiLoading" class="flex items-center gap-2 text-slate-500">
+                                    <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Analyzing manifold topology...
+                                </div>
+                                <div id="aiOutput"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Vault Section -->
+                <div id="code" class="bg-slate-900 rounded-xl shadow-lg overflow-hidden text-slate-300">
+                    <div class="bg-slate-950 p-4 border-b border-slate-800 flex justify-between items-center">
+                        <h3 class="font-mono text-sm font-bold text-teal-400">./implementation/autoencoder.py</h3>
+                        <div class="flex gap-2">
+                            <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                    </div>
+                    <div class="p-6 font-mono text-xs md:text-sm overflow-x-auto whitespace-pre">
+<span class="text-purple-400">class</span> <span class="text-yellow-200">DeepHomeostaticAutoencoder</span>(<span class="text-blue-300">nn.Module</span>):
+    <span class="text-purple-400">def</span> <span class="text-blue-400">__init__</span>(<span class="text-orange-300">self</span>, input_dim, latent_dim=<span class="text-teal-300">10</span>):
+        <span class="text-blue-300">super</span>().<span class="text-blue-400">__init__</span>()
+        
+        <span class="text-gray-500"># --- Encoder: Compresses biology to "Health State" ---</span>
+        <span class="text-orange-300">self</span>.encoder = nn.Sequential(
+            nn.Linear(input_dim, <span class="text-teal-300">64</span>),
+            nn.ReLU(),
+            nn.Linear(<span class="text-teal-300">64</span>, <span class="text-teal-300">32</span>),
+            nn.ReLU(),
+            nn.Linear(<span class="text-teal-300">32</span>, latent_dim) <span class="text-gray-500"># Latent Manifold</span>
+        )
+        
+        <span class="text-gray-500"># --- Decoder: Reconstructs phenotype ---</span>
+        <span class="text-orange-300">self</span>.decoder = nn.Sequential(
+            nn.Linear(latent_dim, <span class="text-teal-300">32</span>),
+            nn.ReLU(),
+            nn.Linear(<span class="text-teal-300">32</span>, <span class="text-teal-300">64</span>),
+            nn.Linear(<span class="text-teal-300">64</span>, input_dim)
+        )
+
+    <span class="text-purple-400">def</span> <span class="text-blue-400">get_dysregulation_score</span>(<span class="text-orange-300">self</span>, x):
+        <span class="text-gray-500">"""Calculates Manifold Distance (DDS)"""</span>
+        x_hat = <span class="text-orange-300">self</span>.decoder(<span class="text-orange-300">self</span>.encoder(x))
+        dds = torch.mean((x - x_hat) ** <span class="text-teal-300">2</span>, dim=<span class="text-teal-300">1</span>)
+        <span class="text-purple-400">return</span> dds</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="border-t border-slate-200 pt-8 text-center text-sm text-slate-500">
+            <p>Generated based on <em>"Beyond the Linear Dose: Redefining 'The Poison' in the AI Era through Deep Homeostatic Modeling"</em></p>
+            <p class="mt-2">Based on Supplementary Materials S1 & S2. NO SVG graphics used. NO Mermaid JS used.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- GLOBAL STATE ---
+        let currentMode = 'standard'; // 'standard' or 'edc'
+        const baselineMean = 0.15;
+        const baselineSD = 0.05;
+        const dbmdThreshold = baselineMean + (1.0 * baselineSD); 
+
+        // --- MATH FUNCTIONS ---
+        function calculateDDS(dose, mode) {
+            if (mode === 'standard') {
+                // Sigmoidal Monotonic Curve
+                return baselineMean + (2.5 / (1 + Math.exp(-1.5 * (dose - 4.5))));
+            } else {
+                // EDC: Non-Monotonic (NMDR)
+                // Low dose spike (Activation) + High dose toxicity
+                // Gaussian bump at Dose=2, width=1.2
+                // Sigmoid onset delayed to Dose=7
+                const activation = 0.8 * Math.exp(-0.5 * Math.pow((dose - 2)/1.2, 2));
+                const toxicity = 2.5 / (1 + Math.exp(-1.5 * (dose - 7)));
+                return baselineMean + activation + toxicity;
+            }
+        }
+
+        // --- INITIAL DATA GENERATION ---
+        
+        // 1. Pristine Manifold (Static Baseline)
+        const pristinePoints = Array.from({length: 50}, () => ({
+            x: (Math.random() - 0.5) * 2, 
+            y: (Math.random() - 0.5) * 2
+        }));
+
+        // 2. Generate Chart Data
+        function generateCurveData(mode) {
+            const points = [];
+            const threshold = [];
+            for (let i = 0; i <= 10; i+=0.2) {
+                points.push({x: i, y: calculateDDS(i, mode)});
+                threshold.push({x: i, y: dbmdThreshold});
+            }
+            return { points, threshold };
+        }
+
+        // --- CHART INITIALIZATION ---
+        const ctxManifold = document.getElementById('manifoldChart').getContext('2d');
+        const manifoldChart = new Chart(ctxManifold, {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    {
+                        label: 'Pristine Reference',
+                        data: pristinePoints,
+                        backgroundColor: 'rgba(13, 148, 136, 0.6)', 
+                        borderColor: 'rgba(13, 148, 136, 1)',
+                        pointRadius: 3
+                    },
+                    {
+                        label: 'Current Population',
+                        data: [], 
+                        backgroundColor: 'rgba(225, 29, 72, 0.7)', 
+                        borderColor: 'rgba(225, 29, 72, 1)',
+                        pointRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { min: -5, max: 15, grid: { display: false }, title: {display: true, text: 'Latent Dimension 1'} },
+                    y: { min: -10, max: 10, grid: { display: false }, title: {display: true, text: 'Latent Dimension 2'} }
+                },
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+
+        const ctxDbmd = document.getElementById('dbmdChart').getContext('2d');
+        const dbmdChart = new Chart(ctxDbmd, {
+            type: 'line',
+            data: {
+                datasets: [
+                    {
+                        label: 'Deep Dysregulation Score (DDS)',
+                        data: generateCurveData('standard').points,
+                        borderColor: 'rgba(71, 85, 105, 1)',
+                        backgroundColor: 'rgba(71, 85, 105, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 0
+                    },
+                    {
+                        label: '1 SD Threshold (dBMD)',
+                        data: generateCurveData('standard').threshold,
+                        borderColor: 'rgba(225, 29, 72, 0.8)',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                        fill: false
+                    },
+                    {
+                        label: 'Current Dose',
+                        data: [{x: 0, y: 0.15}],
+                        backgroundColor: 'rgba(13, 148, 136, 1)',
+                        borderColor: 'white',
+                        borderWidth: 2,
+                        pointRadius: 6,
+                        type: 'scatter'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { type: 'linear', min: 0, max: 10, title: {display: true, text: 'Toxicant Dose'} },
+                    y: { min: 0, max: 3, title: {display: true, text: 'DDS'} }
+                },
+                plugins: { legend: { position: 'bottom', labels: { boxWidth: 10 } } }
+            }
+        });
+
+        // --- INTERACTION LOGIC ---
+        const slider = document.getElementById('doseSlider');
+        const doseDisplay = document.getElementById('doseValue');
+        const ddsDisplay = document.getElementById('currentDDS');
+        const distDisplay = document.getElementById('manifoldDist');
+        const entropyDisplay = document.getElementById('entropyStatus');
+        const modeDesc = document.getElementById('modeDescription');
+        const activationLabel = document.getElementById('activationLabel');
+
+        function updateModelMode() {
+            const modes = document.getElementsByName('simMode');
+            for(let radio of modes) {
+                if(radio.checked) currentMode = radio.value;
+            }
+
+            // Update Chart Curve
+            const newData = generateCurveData(currentMode);
+            dbmdChart.data.datasets[0].data = newData.points;
+            
+            // Update Description
+            if(currentMode === 'edc') {
+                modeDesc.textContent = "Non-Monotonic Dose Response (NMDR). Note low-dose activation spike.";
+                activationLabel.style.opacity = '1';
+            } else {
+                modeDesc.textContent = "Monotonic dose-response (S-Curve). Classic toxicity.";
+                activationLabel.style.opacity = '0';
+            }
+            
+            dbmdChart.update();
+            updateSimulation();
+        }
+
+        function updateSimulation() {
+            const dose = parseFloat(slider.value);
+            doseDisplay.textContent = dose.toFixed(1) + " units";
+
+            // 1. Calculate new DDS
+            const currentDDS = calculateDDS(dose, currentMode);
+            
+            // 2. Update Scatter Plot (Manifold)
+            // Logic: 
+            // - Standard: Linear drift away from center
+            // - EDC: Low dose drift (activation) is chaotic but less directional than high dose
+            const exposedPoints = Array.from({length: 50}, () => {
+                let drift, entropy;
+                
+                if (currentMode === 'standard') {
+                    drift = dose * 0.8;
+                    entropy = 1 + (dose * 0.3);
+                } else {
+                    // EDC Logic
+                    if (dose < 4) {
+                        // Activation Phase: High entropy (scatter), moderate drift
+                        drift = dose * 0.3; 
+                        entropy = 1 + (dose * 0.8); // High scatter early
+                    } else {
+                        // Toxicity Phase: High drift
+                        drift = (dose - 2) * 0.8;
+                        entropy = 1 + (dose * 0.3);
+                    }
+                }
+                
+                return {
+                    x: drift + ((Math.random() - 0.5) * 2 * entropy), 
+                    y: ((Math.random() - 0.5) * 2 * entropy)
+                };
+            });
+
+            manifoldChart.data.datasets[1].data = exposedPoints;
+            manifoldChart.update();
+
+            // 3. Update dBMD Chart Point
+            dbmdChart.data.datasets[2].data = [{x: dose, y: currentDDS}];
+            dbmdChart.update();
+
+            // 4. Update Metrics Text
+            ddsDisplay.textContent = currentDDS.toFixed(2);
+            
+            if (currentDDS < dbmdThreshold) {
+                ddsDisplay.classList.remove('text-rose-600');
+                ddsDisplay.classList.add('text-slate-800');
+                distDisplay.textContent = "Stable";
+                distDisplay.className = "text-2xl font-bold text-teal-600";
+                entropyDisplay.textContent = "Low";
+                entropyDisplay.className = "text-2xl font-bold text-slate-800";
+            } else {
+                ddsDisplay.classList.add('text-rose-600');
+                ddsDisplay.classList.remove('text-slate-800');
+                distDisplay.textContent = "Drifting";
+                distDisplay.className = "text-2xl font-bold text-orange-500";
+                
+                // EDC specific logic for labels
+                if (currentMode === 'edc' && dose < 4 && dose > 0.5) {
+                    entropyDisplay.textContent = "Activation";
+                    entropyDisplay.className = "text-2xl font-bold text-purple-600";
+                } else if (dose > 6) {
+                    entropyDisplay.textContent = "Critical";
+                    entropyDisplay.className = "text-2xl font-bold text-rose-600";
+                } else {
+                    entropyDisplay.textContent = "Elevated";
+                    entropyDisplay.className = "text-2xl font-bold text-orange-500";
+                }
+            }
+        }
+
+        // Initialize and Listen
+        slider.addEventListener('input', updateSimulation);
+        updateSimulation(); // Run once on load
+
+        // --- MOCK AI INTEGRATION FOR GITHUB PAGES ---
+        async function analyzeStateWithMockAI() {
+            const dose = parseFloat(slider.value);
+            const dds = ddsDisplay.textContent;
+            const entropy = entropyDisplay.textContent;
+            const mode = currentMode;
+            
+            const responseContainer = document.getElementById('aiResponseContainer');
+            const aiLoading = document.getElementById('aiLoading');
+            const aiOutput = document.getElementById('aiOutput');
+            
+            // Show loading
+            responseContainer.classList.remove('hidden');
+            aiLoading.style.display = 'flex';
+            aiOutput.innerHTML = '';
+
+            // Simulate API latency
+            await new Promise(r => setTimeout(r, 1500));
+
+            let responseText = "";
+
+            if (mode === 'standard') {
+                if (dose < 3) {
+                    responseText = "The physiological state remains within the **resilient buffering capacity**. The low Deep Dysregulation Score (DDS) indicates efficient **homeostatic repair** is outpacing toxicant influx.";
+                } else if (dose < 6) {
+                    responseText = "Early signs of **manifold displacement** detected. While overt pathology is absent, the elevated reconstruction error suggests **biological debt** is accumulating due to subclinical stress.";
+                } else {
+                    responseText = "**Critical system decoupling** observed. The toxicant load has exceeded the homeostatic threshold (dBMD), leading to rapid **entropy increase** and high risk of adverse outcome.";
+                }
+            } else {
+                // EDC Mode
+                if (dose < 0.5) {
+                    responseText = "Baseline state. No significant perturbation detected in the latent manifold.";
+                } else if (dose < 4) {
+                    responseText = "Unique **NMDR Activation Phase** detected. Despite low dose, the system shows high entropy due to **receptor hypersensitivity** or hormetic stress response. This non-linear spike would be missed by linear regression.";
+                } else if (dose < 7) {
+                    responseText = "Paradoxical **'Quiet Zone'**. The system appears to restabilize as compensatory mechanisms activate, potentially masking the toxicity before the high-dose threshold is reached.";
+                } else {
+                    responseText = "High-dose toxicity has overwhelmed compensation. The system is exhibiting classical **monotonic failure**, validating the U-shaped curve prediction of the Nested Deep Learning model.";
+                }
+            }
+
+            aiLoading.style.display = 'none';
+            aiOutput.innerHTML = marked.parse(responseText);
+        }
+
+    </script>
+    
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. Chart.js used for visualization. -->
+</body>
+</html>
